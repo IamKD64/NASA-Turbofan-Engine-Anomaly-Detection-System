@@ -41,74 +41,72 @@ This problem is addressed as an unsupervised anomaly detection task where models
 
 ## System Architecture
 
-                     +------------------------------+
-                     |   NASA C-MAPSS Dataset       |
-                     |        (FD002)               |
-                     +--------------+---------------+
-                                    |
-                                    v
-                     +------------------------------+
-                     |       Data Preprocessing     |
-                     |  - Cleaning                  |
-                     |  - Feature Scaling           |
-                     |  - Sensor Selection          |
-                     +--------------+---------------+
-                                    |
-                                    v
-                     +------------------------------+
-                     |       Feature Engineering    |
-                     |  - Operating Settings        |
-                     |  - Sensor Signals            |
-                     |  - Time Series Windows       |
-                     +--------------+---------------+
-                                    |
-                                    v
-                     +------------------------------+
-                     |        Model Training        |
-                     +------+-----------+-----------+
-                            |           |
-                            |           |
-            +---------------+           +----------------+
-            |                                            |
-            v                                            v
- +-----------------------+                  +-----------------------+
- |     Isolation Forest  |                  |    Dense Autoencoder  |
- |  (Quick Anomaly Scan) |                  |  (Behavior Learning)  |
- +-----------+-----------+                  +-----------+-----------+
-             |                                              |
-             |                                              |
-             +--------------------+-------------------------+
+## System Architecture
+
+```
+                    NASA C-MAPSS Dataset (FD002)
+                               |
+                               v
+                     +----------------------+
+                     |   Data Preprocessing |
+                     |----------------------|
+                     | Cleaning             |
+                     | Feature Scaling      |
+                     | Sensor Selection     |
+                     +----------+-----------+
+                                |
+                                v
+                     +----------------------+
+                     |  Feature Engineering |
+                     |----------------------|
+                     | Operating Settings   |
+                     | Sensor Signals       |
+                     | Time-Series Windows  |
+                     +----------+-----------+
+                                |
+                                v
+                     +----------------------+
+                     |     Model Training   |
+                     +----------+-----------+
+                                |
+        ---------------------------------------------------------
+        |                       |                               |
+        v                       v                               v
++-------------------+   +--------------------+      +----------------------+
+| Isolation Forest  |   | Dense Autoencoder  |      | LSTM Autoencoder     |
+| (Quick Scan)      |   | (Behavior Model)   |      | (Trend Monitoring)   |
++---------+---------+   +---------+----------+      +----------+-----------+
+          \                     |                            /
+           \                    |                           /
+            \                   |                          /
+             ------------------------------------------------
+                                |
+                                v
+                       +----------------------+
+                       |     Anomaly Score    |
+                       | Deviation / Error    |
+                       +----------+-----------+
                                   |
                                   v
-                     +------------------------------+
-                     |      LSTM Autoencoder        |
-                     |   (Trend-Based Monitoring)   |
-                     +--------------+---------------+
-                                    |
-                                    v
-                     +------------------------------+
-                     |        Anomaly Score         |
-                     |   Deviation / Reconstruction |
-                     +--------------+---------------+
-                                    |
-                                    v
-                     +------------------------------+
-                     |      Engine Health Analysis  |
-                     +--------------+---------------+
-                                    |
-                                    v
-                     +------------------------------+
-                     |   Streamlit Monitoring App   |
-                     +--------------+---------------+
-                                    |
-                                    v
-           +----------------+----------------+----------------+
-           |                |                |
-           v                v                v
- +----------------+ +----------------+ +---------------------+
- | Quick Anomaly  | | Behavior Model | | Trend Monitoring    |
- | Scan Dashboard | | Visualization  | | Degradation Trends  |
- +----------------+ +----------------+ +---------------------+
+                       +----------------------+
+                       | Engine Health        |
+                       | Analysis             |
+                       +----------+-----------+
+                                  |
+                                  v
+                       +----------------------+
+                       | Streamlit Dashboard  |
+                       +----------+-----------+
+                                  |
+          ---------------------------------------------------------
+          |                     |                               |
+          v                     v                               v
++--------------------+  +--------------------+   +-----------------------+
+| Quick Anomaly Scan |  | Behavior Model     |   | Trend Monitoring      |
+| Dashboard          |  | Visualization      |   | Degradation Analysis  |
++--------------------+  +--------------------+   +-----------------------+
+```
+ 
 ---
 
 ## Dataset
