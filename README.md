@@ -41,8 +41,6 @@ This problem is addressed as an unsupervised anomaly detection task where models
 
 ## System Architecture
 
-## System Architecture
-
 ```
                     NASA C-MAPSS Dataset (FD002)
                                |
