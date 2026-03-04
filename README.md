@@ -102,13 +102,13 @@ This problem is addressed as an unsupervised anomaly detection task where models
                      +--------------+---------------+
                                     |
                                     v
-                   +----------------+----------------+
-                   |                |                |
-                   v                v                v
-       +----------------+ +----------------+ +---------------------+
-       | Quick Anomaly  | | Behavior Model | | Trend Monitoring    |
-       | Scan Dashboard | | Visualization  | | Degradation Trends  |
-       +----------------+ +----------------+ +---------------------+
+           +----------------+----------------+----------------+
+           |                |                |
+           v                v                v
+ +----------------+ +----------------+ +---------------------+
+ | Quick Anomaly  | | Behavior Model | | Trend Monitoring    |
+ | Scan Dashboard | | Visualization  | | Degradation Trends  |
+ +----------------+ +----------------+ +---------------------+
 ---
 
 ## Dataset
